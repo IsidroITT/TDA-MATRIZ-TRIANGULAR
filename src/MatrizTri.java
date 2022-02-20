@@ -70,11 +70,6 @@ public int[] obtenerDiagonal(){
 
 public int[] obtienerDiagonalInvertida(){
     int[] dInver = new int[Tam];
-    for (int i = 0; i < Tam; i++) {
-        int j = Tam-1;
-        dInver[j]=MatrizT[i][i];
-        j--;
-    }
     return dInver;
 }
 //retorna los valores de la diagonal invertida en formato de vector.

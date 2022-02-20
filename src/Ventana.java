@@ -183,8 +183,12 @@ public boolean operaciones;
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
        //Inicia la matriz con tamaño n, la construye con numeros random, y la muestra pantalla con una tabla
-        int tam=Integer.parseInt(txtMatrizTam.getText());
+       try{ 
+       int tam=Integer.parseInt(txtMatrizTam.getText());
         matrizTri=new MatrizTri(tam);
+       }catch(NumberFormatException e){
+           showMessageDialog(this,"Solo puedes ingresar numeros en una matriz");
+       }
         MatrizT.setColumnCount(matrizTri.getTam());
         MatrizT.setRowCount(matrizTri.getTam());
             
