@@ -5,8 +5,8 @@ Las operaciones y comportamiento es el siguiente:
 - obtenerTriangunarSuperiorInversa: retorna una matriz de NxN (mismo tamaño original) pero que solo contiene los valores de la diagonal invertida y los elementos que se encuentran arriba de ésta.
 - obtenerTriangunarInferior: retorna una matriz de NxN (del mismo tamaño que la original) pero solo parte triangular interior, entendiendo los valores que incluyen la diagonal principal y lo que esté abajo de esta.
 - obtenerTriangunarInferiorInversa: retorna una matriz de NxN (mismo tamaño original) pero que solo contiene los valores de la diagonal invertida y los elementos que se encuentran abajo de ésta.
-- obtenerDiagonal: retorna los valores de la diagonal principal en formato de vector.
-- obtienerDiagonalInvertida: retorna los valores de la diagonal invertida en formato de vector.
+L- obtenerDiagonal: retorna los valores de la diagonal principal en formato de vector.
+F- obtienerDiagonalInvertida: retorna los valores de la diagonal invertida en formato de vector.
  */
 
 /**
@@ -37,7 +37,9 @@ public class MatrizTri {
         this.Tam = Tam;
     }
     
+    //Operacioness y comportamientos de la matriz
 public int[][]obtenerTriangularSuperior(){
+    
     return MatrizT;
 }
 //retorna una matriz de NxN (del mismo tamaño que la original) pero solo parte triangular superior, entendiendo los valores que incluyen la diagonal principal y lo que esté arriba de esta.
@@ -59,12 +61,20 @@ public int [][] obtenerTriangunarInferiorInversa(){
 
 public int[] obtenerDiagonal(){
     int[] d = new int[Tam];
+    for (int i = 0; i < Tam; i++) {
+        d[i]=MatrizT[i][i];
+    }
     return d;
 }
 //retorna los valores de la diagonal principal en formato de vector.
 
 public int[] obtienerDiagonalInvertida(){
     int[] dInver = new int[Tam];
+    for (int i = 0; i < Tam; i++) {
+        int j = Tam-1;
+        dInver[j]=MatrizT[i][i];
+        j--;
+    }
     return dInver;
 }
 //retorna los valores de la diagonal invertida en formato de vector.

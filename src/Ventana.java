@@ -1,4 +1,5 @@
 
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -12,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Ventana extends javax.swing.JFrame {
 public DefaultTableModel MatrizT;
+public DefaultTableModel NuevaMatriz;
 public MatrizTri matrizTri;
 public boolean operaciones;
     /**
@@ -20,6 +22,7 @@ public boolean operaciones;
     public Ventana() {
         initComponents();
         MatrizT=(DefaultTableModel)tblMatrizT.getModel();
+        NuevaMatriz=(DefaultTableModel)tblNuevaMatriz.getModel();
     }
 
     /**
@@ -35,6 +38,16 @@ public boolean operaciones;
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMatrizT = new javax.swing.JTable();
         txtMatrizTam = new javax.swing.JTextField();
+        lblMatrizOrignial = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblNuevaMatriz = new javax.swing.JTable();
+        lblNuevaMatriz = new javax.swing.JLabel();
+        btnMTriS = new javax.swing.JButton();
+        btnMTriSInver = new javax.swing.JButton();
+        btnMTriInf = new javax.swing.JButton();
+        btnMTriInfInver = new javax.swing.JButton();
+        btnDiagonal = new javax.swing.JButton();
+        btnDiagInver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,38 +68,121 @@ public boolean operaciones;
         ));
         jScrollPane1.setViewportView(tblMatrizT);
 
+        lblMatrizOrignial.setText("Matriz Original");
+
+        tblNuevaMatriz.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane2.setViewportView(tblNuevaMatriz);
+
+        lblNuevaMatriz.setText("Nueva Matriz");
+
+        btnMTriS.setText("M triangular sup");
+
+        btnMTriSInver.setText("M triangular sup Inversa");
+
+        btnMTriInf.setText("M triangular inf");
+
+        btnMTriInfInver.setText("M triangular inf Inversa");
+        btnMTriInfInver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMTriInfInverActionPerformed(evt);
+            }
+        });
+
+        btnDiagonal.setText("Diagonal");
+        btnDiagonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiagonalActionPerformed(evt);
+            }
+        });
+
+        btnDiagInver.setText("Diagonal inversa");
+        btnDiagInver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDiagInverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(txtMatrizTam, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(btnIniciar)
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167))
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(txtMatrizTam, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(btnIniciar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMTriSInver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMTriS, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnMTriInf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMTriInfInver, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDiagInver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDiagonal, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(144, 144, 144)
+                                .addComponent(lblMatrizOrignial)))
+                        .addGap(91, 91, 91)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblNuevaMatriz)
+                                .addGap(140, 140, 140)))))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciar)
+                    .addComponent(txtMatrizTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMTriS)
+                    .addComponent(btnDiagonal)
+                    .addComponent(btnMTriInf))
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMTriSInver)
+                    .addComponent(btnMTriInfInver)
+                    .addComponent(btnDiagInver))
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIniciar)
-                            .addComponent(txtMatrizTam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(187, Short.MAX_VALUE))
+                        .addComponent(lblMatrizOrignial)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNuevaMatriz)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-       //Inicia la matriz con tam n, la construye con numeros random, y la muestra pantalla con una tabla
+       //Inicia la matriz con tamaño n, la construye con numeros random, y la muestra pantalla con una tabla
         int tam=Integer.parseInt(txtMatrizTam.getText());
         matrizTri=new MatrizTri(tam);
         MatrizT.setColumnCount(matrizTri.getTam());
@@ -98,7 +194,28 @@ public boolean operaciones;
                     MatrizT.setValueAt(matrizTri.getMatrizT()[i][j], i, j);
                 }
              }
+         operaciones=true;
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void btnMTriInfInverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriInfInverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMTriInfInverActionPerformed
+
+    private void btnDiagInverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagInverActionPerformed
+        if(operaciones){
+            int [] diagonalInver=matrizTri.obtienerDiagonalInvertida();
+            MostrarDiagonal(NuevaMatriz,diagonalInver);
+        }else
+            showMessageDialog(this,"No es posible mostrar la diagonal inversa si no existe una matriz");
+    }//GEN-LAST:event_btnDiagInverActionPerformed
+
+    private void btnDiagonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagonalActionPerformed
+        if(operaciones){
+            int [] diagonal=matrizTri.obtenerDiagonal();
+            MostrarDiagonal(NuevaMatriz,diagonal);
+        }else
+            showMessageDialog(this,"No es posible mostrar la diagonal si no existe una matriz");
+    }//GEN-LAST:event_btnDiagonalActionPerformed
     
     public void MostrarMatriz(DefaultTableModel tabla, int[][] matriz){
              tabla.setColumnCount(matriz.length);
@@ -110,6 +227,16 @@ public boolean operaciones;
                 }
              }
     }
+    
+    public void MostrarDiagonal(DefaultTableModel tabla, int[] matriz){
+             tabla.setColumnCount(matriz.length);
+             tabla.setRowCount(matriz.length);
+            
+            for (int i = 0; i < matriz.length; i++) {
+                    tabla.setValueAt(matriz[i], 0, i);
+             }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -146,9 +273,19 @@ public boolean operaciones;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDiagInver;
+    private javax.swing.JButton btnDiagonal;
     private javax.swing.JButton btnIniciar;
+    private javax.swing.JButton btnMTriInf;
+    private javax.swing.JButton btnMTriInfInver;
+    private javax.swing.JButton btnMTriS;
+    private javax.swing.JButton btnMTriSInver;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblMatrizOrignial;
+    private javax.swing.JLabel lblNuevaMatriz;
     private javax.swing.JTable tblMatrizT;
+    private javax.swing.JTable tblNuevaMatriz;
     private javax.swing.JTextField txtMatrizTam;
     // End of variables declaration//GEN-END:variables
 }
