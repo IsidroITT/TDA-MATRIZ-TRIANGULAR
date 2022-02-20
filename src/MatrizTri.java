@@ -21,11 +21,20 @@ public class MatrizTri {
     public MatrizTri(int tam) {
        Tam=tam;
        MatrizT=new int[Tam][Tam];
-       
-       //Implementar en la ventana
-        for (int i = 0; i < Tam; i++) 
-            for (int j = 0; j < Tam; j++) 
-                MatrizT[i][j]=(int)(Math.random()*100);
+    }
+
+    //Get y set 
+    public int[][] getMatrizT() {
+        return MatrizT;
+    }
+    public void setMatrizT(int[][] MatrizT) {
+        this.MatrizT = MatrizT;
+    }
+    public int getTam() {
+        return Tam;
+    }
+    public void setTam(int Tam) {
+        this.Tam = Tam;
     }
     
 public int[][]obtenerTriangularSuperior(){
