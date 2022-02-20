@@ -1,4 +1,3 @@
-
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
  * @author isidro
  */
 public class Ventana extends javax.swing.JFrame {
+    //Variables de programa ventana
 public DefaultTableModel MatrizT;
 public DefaultTableModel NuevaMatriz;
 public MatrizTri matrizTri;
@@ -90,6 +90,11 @@ public boolean operaciones;
         });
 
         btnMTriSInver.setText("M triangular sup Inversa");
+        btnMTriSInver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMTriSInverActionPerformed(evt);
+            }
+        });
 
         btnMTriInf.setText("M triangular inf");
         btnMTriInf.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +196,7 @@ public boolean operaciones;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Boton de iniciar la matriz
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
        //Inicia la matriz con tamaño n, la construye con numeros random, y la muestra pantalla con una tabla
        try{ 
@@ -211,10 +217,16 @@ public boolean operaciones;
          operaciones=true;
     }//GEN-LAST:event_btnIniciarActionPerformed
 
+    //Boton de Matriz triangular inferior inversa
     private void btnMTriInfInverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriInfInverActionPerformed
-        // TODO add your handling code here:
+        if(operaciones){
+            int [][] mTII=matrizTri.obtenerTriangunarInferiorInversa();
+            MostrarMatriz(NuevaMatriz,mTII);
+        }else
+            showMessageDialog(this,"No es posible mostrar la matriztriangular superior, primero inicie un a matriz");
     }//GEN-LAST:event_btnMTriInfInverActionPerformed
 
+ //Boton de diagonal invertida
     private void btnDiagInverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagInverActionPerformed
         if(operaciones){
             int [] diagonalInver=matrizTri.obtienerDiagonalInvertida();
@@ -223,6 +235,7 @@ public boolean operaciones;
             showMessageDialog(this,"No es posible mostrar la diagonal inversa si no existe una matriz");
     }//GEN-LAST:event_btnDiagInverActionPerformed
 
+    //Boton de diagonal
     private void btnDiagonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiagonalActionPerformed
         if(operaciones){
             int [] diagonal=matrizTri.obtenerDiagonal();
@@ -231,6 +244,7 @@ public boolean operaciones;
             showMessageDialog(this,"No es posible mostrar la diagonal si no existe una matriz");
     }//GEN-LAST:event_btnDiagonalActionPerformed
 
+    //Boton de matriz triangular superior
     private void btnMTriSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriSActionPerformed
         if(operaciones){
             int [][] mTS=matrizTri.obtenerTriangularSuperior();
@@ -239,6 +253,7 @@ public boolean operaciones;
             showMessageDialog(this,"No es posible mostrar la matriztriangular superior, primero inicie un a matriz");
     }//GEN-LAST:event_btnMTriSActionPerformed
 
+    //Boton de matriz triangular inferior
     private void btnMTriInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriInfActionPerformed
         if(operaciones){
             int [][] mTI=matrizTri.obtenerTriangularInferior();
@@ -246,6 +261,15 @@ public boolean operaciones;
         }else
             showMessageDialog(this,"No es posible mostrar la matriz triangular inferior, primero inicie un a matriz");
     }//GEN-LAST:event_btnMTriInfActionPerformed
+
+    //Boton de matriz triangular superior invertida
+    private void btnMTriSInverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriSInverActionPerformed
+        if(operaciones){
+            int [][] mTS=matrizTri.obtenerTriangularSuperiorInversa();
+            MostrarMatriz(NuevaMatriz,mTS);
+        }else
+            showMessageDialog(this,"No es posible mostrar la matriztriangular superior, primero inicie un a matriz");
+    }//GEN-LAST:event_btnMTriSInverActionPerformed
     
     //Metodo para construir las tablas con los valores de la matriz
     public void MostrarMatriz(DefaultTableModel tabla, int[][] matriz){
