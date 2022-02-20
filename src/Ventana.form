@@ -178,6 +178,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="M triangular sup"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMTriSActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMTriSInver">
       <Properties>
@@ -188,6 +191,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="M triangular inf"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMTriInfActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnMTriInfInver">
       <Properties>

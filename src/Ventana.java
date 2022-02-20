@@ -83,10 +83,20 @@ public boolean operaciones;
         lblNuevaMatriz.setText("Nueva Matriz");
 
         btnMTriS.setText("M triangular sup");
+        btnMTriS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMTriSActionPerformed(evt);
+            }
+        });
 
         btnMTriSInver.setText("M triangular sup Inversa");
 
         btnMTriInf.setText("M triangular inf");
+        btnMTriInf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMTriInfActionPerformed(evt);
+            }
+        });
 
         btnMTriInfInver.setText("M triangular inf Inversa");
         btnMTriInfInver.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +230,24 @@ public boolean operaciones;
         }else
             showMessageDialog(this,"No es posible mostrar la diagonal si no existe una matriz");
     }//GEN-LAST:event_btnDiagonalActionPerformed
+
+    private void btnMTriSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriSActionPerformed
+        if(operaciones){
+            int [][] mTS=matrizTri.obtenerTriangularSuperior();
+            MostrarMatriz(NuevaMatriz,mTS);
+        }else
+            showMessageDialog(this,"No es posible mostrar la matriztriangular superior, primero inicie un a matriz");
+    }//GEN-LAST:event_btnMTriSActionPerformed
+
+    private void btnMTriInfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMTriInfActionPerformed
+        if(operaciones){
+            int [][] mTI=matrizTri.obtenerTriangularInferior();
+            MostrarMatriz(NuevaMatriz,mTI);
+        }else
+            showMessageDialog(this,"No es posible mostrar la matriz triangular inferior, primero inicie un a matriz");
+    }//GEN-LAST:event_btnMTriInfActionPerformed
     
+    //Metodo para construir las tablas con los valores de la matriz
     public void MostrarMatriz(DefaultTableModel tabla, int[][] matriz){
              tabla.setColumnCount(matriz.length);
              tabla.setRowCount(matriz.length);
@@ -232,9 +259,10 @@ public boolean operaciones;
              }
     }
     
+    //Similar a MostraraMatriz, pero muestra los valores de la diagonal, en la primera fila
     public void MostrarDiagonal(DefaultTableModel tabla, int[] matriz){
              tabla.setColumnCount(matriz.length);
-             tabla.setRowCount(matriz.length);
+             tabla.setRowCount(1);
             
             for (int i = 0; i < matriz.length; i++) {
                     tabla.setValueAt(matriz[i], 0, i);
